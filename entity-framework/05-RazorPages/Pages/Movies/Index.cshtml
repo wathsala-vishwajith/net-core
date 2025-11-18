@@ -1,0 +1,79 @@
+@page
+@model RazorPagesApp.Pages.Movies.IndexModel
+@{
+    ViewData["Title"] = "Movies";
+}
+
+<h1>Movies</h1>
+
+<p>
+    <a asp-page="Create" class="btn btn-primary">Create New Movie</a>
+</p>
+
+<!-- Search Form -->
+<form>
+    <div class="row mb-3">
+        <div class="col-md-6">
+            <label for="searchString" class="form-label">Search by Title</label>
+            <input type="text" class="form-control" id="searchString"
+                   name="searchString" value="@Model.SearchString"
+                   placeholder="Enter movie title...">
+        </div>
+        <div class="col-md-4">
+            <label for="movieGenre" class="form-label">Filter by Genre</label>
+            <select class="form-select" id="movieGenre" name="movieGenre">
+                <option value="">All Genres</option>
+                @foreach (var genre in Model.Genres)
+                {
+                    <option value="@genre" selected="@(genre == Model.MovieGenre)">@genre</option>
+                }
+            </select>
+        </div>
+        <div class="col-md-2 d-flex align-items-end">
+            <button type="submit" class="btn btn-success w-100">Search</button>
+        </div>
+    </div>
+</form>
+
+<!-- Movies Table -->
+<table class="table table-striped table-hover">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Release Date</th>
+            <th>Genre</th>
+            <th>Price</th>
+            <th>Rating</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var movie in Model.Movies)
+        {
+            <tr>
+                <td>@movie.Title</td>
+                <td>@movie.ReleaseDate.ToString("MM/dd/yyyy")</td>
+                <td>@movie.Genre</td>
+                <td>@movie.Price.ToString("C")</td>
+                <td>
+                    @for (int i = 0; i < movie.Rating; i++)
+                    {
+                        <span>⭐</span>
+                    }
+                </td>
+                <td>
+                    <a asp-page="./Edit" asp-route-id="@movie.Id" class="btn btn-sm btn-warning">Edit</a>
+                    <a asp-page="./Details" asp-route-id="@movie.Id" class="btn btn-sm btn-info">Details</a>
+                    <a asp-page="./Delete" asp-route-id="@movie.Id" class="btn btn-sm btn-danger">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@if (!Model.Movies.Any())
+{
+    <div class="alert alert-info">
+        No movies found. <a asp-page="Create">Create one!</a>
+    </div>
+}

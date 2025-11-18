@@ -1,0 +1,42 @@
+@page "{id:int}"
+@model RazorPagesApp.Pages.Movies.DetailsModel
+@{
+    ViewData["Title"] = "Movie Details";
+}
+
+<h1>Movie Details</h1>
+
+<div class="card">
+    <div class="card-body">
+        <dl class="row">
+            <dt class="col-sm-3">Title</dt>
+            <dd class="col-sm-9"><h4>@Model.Movie.Title</h4></dd>
+
+            <dt class="col-sm-3">Release Date</dt>
+            <dd class="col-sm-9">@Model.Movie.ReleaseDate.ToString("MM/dd/yyyy")</dd>
+
+            <dt class="col-sm-3">Genre</dt>
+            <dd class="col-sm-9"><span class="badge bg-primary">@Model.Movie.Genre</span></dd>
+
+            <dt class="col-sm-3">Price</dt>
+            <dd class="col-sm-9">@Model.Movie.Price.ToString("C")</dd>
+
+            <dt class="col-sm-3">Description</dt>
+            <dd class="col-sm-9">@Model.Movie.Description</dd>
+
+            <dt class="col-sm-3">Rating</dt>
+            <dd class="col-sm-9">
+                @for (int i = 0; i < Model.Movie.Rating; i++)
+                {
+                    <span>⭐</span>
+                }
+                <span>(@Model.Movie.Rating/10)</span>
+            </dd>
+        </dl>
+
+        <div class="mt-3">
+            <a asp-page="./Edit" asp-route-id="@Model.Movie.Id" class="btn btn-warning">Edit</a>
+            <a asp-page="./Index" class="btn btn-secondary">Back to List</a>
+        </div>
+    </div>
+</div>

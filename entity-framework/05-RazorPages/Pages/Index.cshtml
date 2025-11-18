@@ -1,0 +1,53 @@
+@page
+@model RazorPagesApp.Pages.IndexModel
+@{
+    ViewData["Title"] = "Home";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome to Razor Pages Movie App</h1>
+    <p class="lead">A sample ASP.NET Core Razor Pages application with Entity Framework Core</p>
+
+    <div class="row mt-5">
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">📽️ Movies</h5>
+                    <p class="card-text">Browse, create, edit, and delete movies in the database.</p>
+                    <a href="/Movies" class="btn btn-primary">View Movies</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">🔍 Search</h5>
+                    <p class="card-text">Search movies by title or filter by genre.</p>
+                    <a href="/Movies" class="btn btn-primary">Search Movies</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">➕ Add New</h5>
+                    <p class="card-text">Add new movies to the collection.</p>
+                    <a href="/Movies/Create" class="btn btn-primary">Create Movie</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="mt-5">
+        <h3>Features Demonstrated</h3>
+        <ul class="list-group">
+            <li class="list-group-item">✅ Razor Pages with Entity Framework Core</li>
+            <li class="list-group-item">✅ CRUD Operations (Create, Read, Update, Delete)</li>
+            <li class="list-group-item">✅ Data Annotations and Validation</li>
+            <li class="list-group-item">✅ Search and Filtering</li>
+            <li class="list-group-item">✅ PageModel pattern (Code-behind)</li>
+            <li class="list-group-item">✅ Dependency Injection</li>
+            <li class="list-group-item">✅ Bootstrap UI</li>
+        </ul>
+    </div>
+</div>

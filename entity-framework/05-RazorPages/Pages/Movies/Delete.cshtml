@@ -1,0 +1,46 @@
+@page "{id:int}"
+@model RazorPagesApp.Pages.Movies.DeleteModel
+@{
+    ViewData["Title"] = "Delete Movie";
+}
+
+<h1>Delete Movie</h1>
+
+<div class="alert alert-danger">
+    <h4>Are you sure you want to delete this movie?</h4>
+</div>
+
+<div class="card">
+    <div class="card-body">
+        <dl class="row">
+            <dt class="col-sm-3">Title</dt>
+            <dd class="col-sm-9">@Model.Movie.Title</dd>
+
+            <dt class="col-sm-3">Release Date</dt>
+            <dd class="col-sm-9">@Model.Movie.ReleaseDate.ToString("MM/dd/yyyy")</dd>
+
+            <dt class="col-sm-3">Genre</dt>
+            <dd class="col-sm-9">@Model.Movie.Genre</dd>
+
+            <dt class="col-sm-3">Price</dt>
+            <dd class="col-sm-9">@Model.Movie.Price.ToString("C")</dd>
+
+            <dt class="col-sm-3">Description</dt>
+            <dd class="col-sm-9">@Model.Movie.Description</dd>
+
+            <dt class="col-sm-3">Rating</dt>
+            <dd class="col-sm-9">
+                @for (int i = 0; i < Model.Movie.Rating; i++)
+                {
+                    <span>⭐</span>
+                }
+            </dd>
+        </dl>
+
+        <form method="post">
+            <input type="hidden" asp-for="Movie.Id" />
+            <button type="submit" class="btn btn-danger">Delete</button>
+            <a asp-page="Index" class="btn btn-secondary">Cancel</a>
+        </form>
+    </div>
+</div>
